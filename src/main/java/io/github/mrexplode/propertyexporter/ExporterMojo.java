@@ -18,7 +18,7 @@ public class ExporterMojo extends AbstractMojo {
     /**
      * The properties to export
      */
-    @Parameter(property="export.informations")
+    @Parameter(property="export.propList")
     private String[] propList;
     
     /**
