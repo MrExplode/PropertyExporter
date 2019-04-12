@@ -54,8 +54,8 @@ public class ExporterMojo extends AbstractMojo {
             PrintWriter writer = new PrintWriter(new FileWriter(file));
             for (int i = 0; i < propList.length; i++) {
                 String prop = propList[i];
-                logger.info("Writing property: " + (i + 1 == propList.length ? "" : separator));
-                writer.print("\\" + prop + separator);
+                logger.info("Writing property: " + prop);
+                writer.print(prop + separator + (i + 1 == propList.length ? "" : separator));
             }
             writer.close();
             logger.info("Properties exported!");

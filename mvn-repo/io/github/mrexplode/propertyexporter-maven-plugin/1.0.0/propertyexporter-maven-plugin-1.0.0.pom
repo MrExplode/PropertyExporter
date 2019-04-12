@@ -12,7 +12,7 @@
   	<!-- maven bugfix -->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <build>1</build>
+    <build>3</build>
   </properties>
   
   <dependencies>
