@@ -5,8 +5,31 @@
   <version> 1.0.0</version>
   <name>PropertyEporter</name>
   <description>Export any Maven placeholder to file</description>
+  <url>https://github.com/MrExplode/PropertyExporter</url>
   
   <packaging>maven-plugin</packaging>
+  
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+	  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	</license>
+  </licenses>
+  
+  <developers>
+    <developer>
+	  <name>MrExplode</name>
+	  <email>sunstorm@outlook.hu</email>
+	  <organization>MrExplode</organization>
+	  <organizationUrl>https://mrexplode.github.io/</organizationUrl>
+	</developer>
+  </developers>
+  
+  <scm>
+	<connection>scm:git:git://github.com/MrExplode/PropertyExporter.git</connection>
+	<developerConnection>scm:git:ssh://github.com/MrExplode/PropertyExporter.git</developerConnection>
+	<url>https://github.com/MrExplode/PropertyExporter/tree/master</url>
+  </scm>
   
   <properties>
   	<!-- maven bugfix -->
@@ -30,4 +53,66 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+  
+  <build>
+    <plugins>
+	  <!-- Nexus staging -->
+	  <plugin>
+	    <groupId>org.sonatype.plugins</groupId>
+		<artifactId>nexus-staging-maven-plugin</artifactId>
+		<version>1.6.8</version>
+		<extensions>true</extensions>
+		<configuration>
+		  <serverId>ossrh</serverId>
+		  <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		  <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		</configuration>
+	  </plugin>
+	  
+	  <!-- Source -->
+	  <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-source-plugin</artifactId>
+		<version>3.0.1</version>
+		<executions>
+		  <execution>
+		    <id>attach-sources</id>
+			<goals>
+			  <goal>jar-no-fork</goal>
+			</goals>
+		  </execution>
+		</executions>
+	  </plugin>
+	  
+	  <!-- Javadoc -->
+	  <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-javadoc-plugin</artifactId>
+		<version>3.1.0</version>
+		<executions>
+		  <execution>
+		    <id>attach-javadocs</id>
+			<goals>
+              <goal>jar</goal>
+            </goals>
+		  </execution>
+		</executions>
+	  </plugin>
+	  
+	  <!-- GPG signing -->
+	  <plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-gpg-plugin</artifactId>
+		<version>1.6</version>
+		<executions>
+		  <execution>
+		    <id>sign-artifacts</id>
+			<phase>verify</phase>
+			<goals>
+			  <goal>sign</goal>
+			</goals>
+		</executions>
+	  </plugin>
+	</plugins>
+  </build>
 </project>
