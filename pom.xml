@@ -46,11 +46,11 @@
     <url>https://github.com/MrExplode/PropertyExporter/issues</url>
   </issueManagement>
   
-  <!-- CI management
+  <!-- CI management -->
   <ciManagement>
   	<system>Travis</system>
-  	<url></url>
-  </ciManagement> -->
+  	<url>https://travis-ci.org/MrExplode/PropertyExporter</url>
+  </ciManagement>
   
   <scm>
 	<connection>scm:git:git://github.com/MrExplode/PropertyExporter.git</connection>

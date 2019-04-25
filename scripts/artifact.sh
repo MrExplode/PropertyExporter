@@ -42,7 +42,7 @@ git add -f .
 git commit -m "Latest Artifact for $PROJECT_NAME #$TRAVIS_BUILD_NUMBER
 
 Latest Artifact on a successful Travis CI build, pushed automatically"
-echo -e "\e[93mPushing JavaDoc to webpage"
+echo -e "\e[93mPushing Artifact to webpage..."
 git push -fq origin master
 
 #cleaning up
