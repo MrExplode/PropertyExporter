@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.mrexplode</groupId>
   <artifactId>propertyexporter-maven-plugin</artifactId>
-  <version> 1.0.0</version>
+  <version>1.0.0</version>
   <name>PropertyEporter</name>
   <description>Export any Maven placeholder to file</description>
   <url>https://github.com/MrExplode/PropertyExporter</url>
@@ -16,6 +16,7 @@
 	</license>
   </licenses>
   
+  <!-- Develooper -->
   <developers>
     <developer>
 	  <name>MrExplode</name>
@@ -24,6 +25,32 @@
 	  <organizationUrl>https://mrexplode.github.io/</organizationUrl>
 	</developer>
   </developers>
+  
+  <!-- Dist managenent -->
+  <distributionManagement>
+    <!-- Snapshot -->
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <!-- Release -->
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+  
+  <!-- Issue management -->
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/MrExplode/PropertyExporter/issues</url>
+  </issueManagement>
+  
+  <!-- CI management
+  <ciManagement>
+  	<system>Travis</system>
+  	<url></url>
+  </ciManagement> -->
   
   <scm>
 	<connection>scm:git:git://github.com/MrExplode/PropertyExporter.git</connection>
@@ -37,13 +64,6 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <build>6</build>
   </properties>
-  
-  <licenss>
-    <license>
-	  <name>Apache License, Version 2.0</name>
-	  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-	</license>
-  </licenses>
   
   <dependencies>
     <dependency>
@@ -61,65 +81,92 @@
     </dependency>
   </dependencies>
   
-  <build>
-    <plugins>
-	  <!-- Nexus staging -->
-	  <plugin>
-	    <groupId>org.sonatype.plugins</groupId>
-		<artifactId>nexus-staging-maven-plugin</artifactId>
-		<version>1.6.8</version>
-		<extensions>true</extensions>
-		<configuration>
-		  <serverId>ossrh</serverId>
-		  <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-		  <autoReleaseAfterClose>true</autoReleaseAfterClose>
-		</configuration>
-	  </plugin>
+  <profiles>
+    <!-- Release profile -->
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+		  <!-- Source -->
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-source-plugin</artifactId>
+		    <version>3.0.1</version>
+		    <executions>
+		      <execution>
+		        <id>attach-sources</id>
+			    <goals>
+			      <goal>jar-no-fork</goal>
+			    </goals>
+		      </execution>
+		    </executions>
+	      </plugin>
 	  
-	  <!-- Source -->
-	  <plugin>
-	    <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-source-plugin</artifactId>
-		<version>3.0.1</version>
-		<executions>
-		  <execution>
-		    <id>attach-sources</id>
-			<goals>
-			  <goal>jar-no-fork</goal>
-			</goals>
-		  </execution>
-		</executions>
-	  </plugin>
-	  
-	  <!-- Javadoc -->
-	  <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-javadoc-plugin</artifactId>
-		<version>3.1.0</version>
-		<executions>
-		  <execution>
-		    <id>attach-javadocs</id>
-			<goals>
-              <goal>jar</goal>
-            </goals>
-		  </execution>
-		</executions>
-	  </plugin>
-	  
-	  <!-- GPG signing -->
-	  <plugin>
-	    <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-gpg-plugin</artifactId>
-		<version>1.6</version>
-		<executions>
-		  <execution>
-		    <id>sign-artifacts</id>
-			<phase>verify</phase>
-			<goals>
-			  <goal>sign</goal>
-			</goals>
-		</executions>
-	  </plugin>
-	</plugins>
-  </build>
+	      <!-- Javadoc -->
+	      <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-javadoc-plugin</artifactId>
+		    <version>3.1.0</version>
+		    <executions>
+		      <execution>
+		        <id>attach-javadocs</id>
+			    <goals>
+                  <goal>jar</goal>
+                </goals>
+		      </execution>
+		    </executions>
+	      </plugin>
+		  
+		  <!-- GPG signing -->
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-gpg-plugin</artifactId>
+		    <version>1.6</version>
+		    <executions>
+		      <execution>
+		        <id>sign-artifacts</id>
+			    <phase>verify</phase>
+			    <goals>
+			      <goal>sign</goal>
+			    </goals>
+		      </execution>
+		    </executions>
+	      </plugin>
+		  
+	      <!-- Nexus staging -->
+	      <plugin>
+	        <groupId>org.sonatype.plugins</groupId>
+		    <artifactId>nexus-staging-maven-plugin</artifactId>
+		    <version>1.6.8</version>
+		    <extensions>true</extensions>
+		    <configuration>
+		      <serverId>ossrh</serverId>
+		      <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		      <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		    </configuration>
+	      </plugin>
+		  
+		  <!-- Release -->
+		  <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-release-plugin</artifactId>
+			<version>2.5.3</version>
+			<configuration>
+			  <localCheckout>true</localCheckout>
+			  <pushChanges>false</pushChanges>
+			  <mavenExecutorId>forked-path</mavenExecutorId>
+			  <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+			</configuration>
+			<dependencies>
+			  <dependency>
+			    <groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-gitexe</artifactId>
+				<version>1.11.2</version>
+			  </dependency>
+			</dependencies>
+		  </plugin>
+	    </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
