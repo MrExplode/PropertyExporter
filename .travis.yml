@@ -4,6 +4,8 @@ before_script:
    - sudo add-apt-repository --yes ppa:deadsnakes/ppa
    - sudo apt-get update
    - sudo apt-get install python3.6
+   - chmod +x scripts/artifact.sh
+   - chmod +x scripts/javadoc.sh
 script:
    - scripts/artifact.sh
    - scripts/javadoc.sh
