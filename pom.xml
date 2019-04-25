@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.mrexplode</groupId>
   <artifactId>propertyexporter-maven-plugin</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <name>PropertyEporter</name>
   <description>Export any Maven placeholder to file</description>
   <url>https://github.com/MrExplode/PropertyExporter</url>
