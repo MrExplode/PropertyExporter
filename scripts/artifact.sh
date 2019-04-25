@@ -21,7 +21,7 @@ PROJECT_HOME=$HOME/build/$PROJECT_OWNER/$PROJECT_NAME
 
 # Building the project
 fold_start install "Building artifact"
-mvn install
+mvn install propertyexporter:export -P travis
 fold_end install
 
 # Setting up git

@@ -83,6 +83,30 @@
   </dependencies>
   
   <profiles>
+    <!-- Travis profile -->
+    <profile>
+	  <id>travis</id>
+	  <build>
+	    <plugins>
+		  <!-- Property export -->
+		  <plugin>
+		    <groupId>io.github.mrexplode</groupId>
+			<artifactId>propertyexporter-maven-plugin</artifactId>
+			<version>1.0.1</version>
+			<configuration>
+			  <propList>
+  			    <param>${project.name}</param>
+  				<param>${project.description}</param>
+  				<param>${project.build.finalName}.jar</param>
+  			  </propList>
+  			  <file>${project.build.directory}/info.txt</file>
+  			  <separator>;</separator>
+  			</configuration>
+  			<executions><execution><goals><goal>export</goal></goals></execution></executions>
+		  </plugin>
+		</plugins>
+	  </build>
+	</profile>
     <!-- Release profile -->
     <profile>
       <id>release</id>
