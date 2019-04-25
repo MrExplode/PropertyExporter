@@ -21,8 +21,9 @@ for x in listFile:
 		found = True
 		print("[PLM] Found project mapping, updated it")
 	else:
-		# other project, just append it
-		textList.append(x)
+		# other project, just append it & not empty string
+		if x:
+			textList.append(x)
 
 # project is not mapped yet
 if not found:
@@ -34,4 +35,5 @@ listFile.close()
 #write out new list
 with open(sys.argv[2], "w") as listFile:
 	for project in textList:
-		listFile.write("%s\n" % project)
+		listFile.write(project)
+		listFile.write("\n")
