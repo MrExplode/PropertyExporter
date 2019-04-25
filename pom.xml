@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.mrexplode</groupId>
   <artifactId>propertyexporter-maven-plugin</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <name>PropertyEporter</name>
   <description>Export any Maven placeholder to file</description>
   <url>https://github.com/MrExplode/PropertyExporter</url>
@@ -56,7 +56,7 @@
 	<connection>scm:git:git://github.com/MrExplode/PropertyExporter.git</connection>
 	<developerConnection>scm:git:${github.token}@github.com/MrExplode/PropertyExporter.git</developerConnection>
 	<url>https://github.com/MrExplode/PropertyExporter/tree/master</url>
-    <tag>v1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
   
   <properties>
