@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.mrexplode</groupId>
   <artifactId>propertyexporter-maven-plugin</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>PropertyEporter</name>
   <description>Export any Maven placeholder to file</description>
   <url>https://github.com/MrExplode/PropertyExporter</url>
@@ -54,7 +54,7 @@
   
   <scm>
 	<connection>scm:git:git://github.com/MrExplode/PropertyExporter.git</connection>
-	<developerConnection>scm:git:ssh://github.com/MrExplode/PropertyExporter.git</developerConnection>
+	<developerConnection>scm:git:${github.token}@github.com/MrExplode/PropertyExporter.git</developerConnection>
 	<url>https://github.com/MrExplode/PropertyExporter/tree/master</url>
   </scm>
   
@@ -158,6 +158,11 @@
 			  <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
 			</configuration>
 			<dependencies>
+			  <dependency>
+			    <groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-api</artifactId>
+				<version>1.11.2</version>
+			  </dependency>
 			  <dependency>
 			    <groupId>org.apache.maven.scm</groupId>
 				<artifactId>maven-scm-provider-gitexe</artifactId>
