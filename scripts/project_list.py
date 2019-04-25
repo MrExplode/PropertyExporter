@@ -2,7 +2,9 @@ import sys
 
 print("== Python project list manager ==")
 #the build info file
-projectInfo = open(sys.argv[1], "r").readLine()
+infoFile = open(sys.argv[1], "r")
+projectInfo = infoFile.readline()
+infoFile.close()
 projectName = projectInfo.split(";")[0]
 #the webiste projectlist file
 listFile = open(sys.argv[2], "r")
