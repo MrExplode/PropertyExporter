@@ -1,7 +1,7 @@
 #PropertyExporter
 language: java
 before_script:
-   - apt-get install python3.6
+   - sudo apt-get install python3.6
 script:
    - scripts/artifact.sh
    - scripts/javadoc.sh
